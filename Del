@@ -1,0 +1,5 @@
+# Delete all JetBrains Copilot plugin cache/config files for all IntelliJ versions
+Remove-Item -LiteralPath "C:\Users\AM23580\AppData\Roaming\JetBrains\IdeaIC2024.3\github-copilot.local.xml" -Force -ErrorAction SilentlyContinue
+Remove-Item -LiteralPath "C:\Users\AM23580\AppData\Roaming\JetBrains\IdeaIC2025.1\github-copilot.local.xml" -Force -ErrorAction SilentlyContinue
+Remove-Item -LiteralPath "C:\Users\AM23580\AppData\Roaming\JetBrains\IdeaIC2025.2\github-copilot.local.xml" -Force -ErrorAction SilentlyContinue
+Remove-Item -LiteralPath "C:\Users\AM23580\AppData\Roaming\JetBrains\IdeaIC2025.2\plugins\github-copilot-intellij" -Recurse -Force -ErrorAction SilentlyContinue
