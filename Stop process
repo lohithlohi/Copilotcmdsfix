@@ -1,0 +1,14 @@
+# show candidate JetBrains folders
+Write-Host "APPDATA:" $env:APPDATA
+Get-ChildItem "$env:APPDATA\JetBrains" -Directory -ErrorAction SilentlyContinue | Select-Object Name, FullName
+
+# remove Copilot cached persistence folders under Roaming and Local (non-destructive to code)
+Remove-Item -Path "$env:APPDATA\JetBrains\IntelliJIdea*\github-copilot" -Recurse -Force -ErrorAction SilentlyContinue
+Remove-Item -Path "$env:LOCALAPPDATA\JetBrains\IntelliJIdea*\github-copilot" -Recurse -Force -ErrorAction SilentlyContinue
+
+# also remove plugin data in plugins and caches if present
+Remove-Item -Path "$env:APPDATA\JetBrains\IntelliJIdea*\plugins\github-copilot" -Recurse -Force -ErrorAction SilentlyContinue
+Remove-Item -Path "$env:LOCALAPPDATA\JetBrains\IntelliJIdea*\plugins\github-copilot" -Recurse -Force -ErrorAction SilentlyContinue
+
+# show any remaining 'copilot' paths
+Get-ChildItem "$env:APPDATA" -Recurse -Depth 3 -ErrorAction SilentlyContinue | Where-Object { $_.Name -match "copilot" } | Select-Object FullName -First 50
