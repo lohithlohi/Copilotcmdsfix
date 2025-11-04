@@ -1,0 +1,5 @@
+# check free space on system drive
+Get-PSDrive C | Select-Object Name, Free, Used, @{n='FreeGB';e={[math]::Round($_.Free/1GB,2)}}
+
+# basic permission listing for JetBrains AppData folder
+icacls "$env:APPDATA\JetBrains" /T | Select-Object -First 40
